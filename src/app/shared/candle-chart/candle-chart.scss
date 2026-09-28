@@ -1,0 +1,113 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin: 0 0 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+
+  div {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  dt {
+    color: var(--muted);
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  &--up dd {
+    color: var(--up);
+  }
+
+  &--down dd {
+    color: var(--down);
+  }
+
+  &__time {
+    color: var(--muted);
+    width: 100%;
+
+    @include bp.up(sm) {
+      width: auto;
+    }
+  }
+}
+
+.plot {
+  position: relative;
+  padding-right: 4.5rem; // 右側價格軸空間
+
+  @include bp.down(sm) {
+    padding-right: 3.75rem;
+  }
+}
+
+svg {
+  display: block;
+  width: 100%;
+  height: clamp(220px, 45vw, 380px);
+  touch-action: pan-y; // 手機上保留垂直捲動
+  cursor: crosshair;
+
+  line {
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+.grid {
+  stroke: var(--border);
+  stroke-dasharray: 3 4;
+}
+
+.crosshair {
+  stroke: var(--muted);
+  stroke-dasharray: 2 3;
+}
+
+.candle {
+  &.up {
+    stroke: var(--up);
+    fill: var(--up);
+  }
+
+  &.down {
+    stroke: var(--down);
+    fill: var(--down);
+  }
+}
+
+.axis {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 4.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+
+  li {
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%);
+  }
+
+  li:first-child {
+    transform: none;
+  }
+
+  li:last-child {
+    transform: translateY(-100%);
+  }
+}
