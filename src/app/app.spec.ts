@@ -11,12 +11,10 @@ describe('App', () => {
     }).compileComponents();
   });
 
-  it('should render brand and idle connection status', async () => {
+  it('should render logo', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
-    const el = fixture.nativeElement as HTMLElement;
-
-    expect(el.querySelector('.brand')?.textContent).toContain('Market');
-    expect(el.querySelector('.status')?.textContent).toContain('未連線');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.logo')?.textContent).toContain('Coin Market');
   });
 });

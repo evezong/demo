@@ -1,97 +1,31 @@
-@use 'breakpoints' as bp;
+@use '../variables' as *;
 
-:host {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+.header {
+  background: #fff;
+  border-bottom: 1px solid $border-color;
 
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter: blur(8px);
-
-  &__inner {
+  .container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 3.5rem;
+    height: 56px;
   }
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--text);
-  font-weight: 700;
+.logo {
+  color: $primary;
+  font-size: 20px;
+  font-weight: bold;
   text-decoration: none;
-
-  &__logo {
-    display: grid;
-    place-items: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 8px;
-    background: var(--accent);
-    color: #fff;
-    font-size: 0.8rem;
-  }
-}
-
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--muted);
-  font-size: 0.8rem;
-
-  &__dot {
-    width: 0.55rem;
-    height: 0.55rem;
-    border-radius: 50%;
-    background: var(--muted);
-  }
-
-  &--open .status__dot {
-    background: var(--up);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--up) 25%, transparent);
-  }
-
-  &--connecting .status__dot,
-  &--reconnecting .status__dot {
-    background: var(--accent);
-  }
-
-  // 手機只顯示燈號
-  &__label {
-    @include bp.down(sm) {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip-path: inset(50%);
-    }
-  }
 }
 
 main {
-  flex: 1;
-  width: 100%;
-  padding-block: 1.25rem 2rem;
-
-  @include bp.up(md) {
-    padding-block: 2rem 3rem;
-  }
+  padding-top: 24px;
+  padding-bottom: 40px;
 }
 
 .footer {
-  padding-block: 1.25rem;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 0.75rem;
+  padding: 16px;
+  color: $text-muted;
+  font-size: 12px;
   text-align: center;
 }

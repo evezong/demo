@@ -1,18 +1,9 @@
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
+import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { httpErrorInterceptor } from './core/http/http-error.interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(
-      routes,
-      withComponentInputBinding(),
-      withInMemoryScrolling({ scrollPositionRestoration: 'top' }),
-    ),
-    provideHttpClient(withFetch(), withInterceptors([httpErrorInterceptor])),
-  ],
+  providers: [provideBrowserGlobalErrorListeners(), provideRouter(routes), provideHttpClient()],
 };

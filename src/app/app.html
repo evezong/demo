@@ -1,14 +1,6 @@
-<header class="topbar">
-  <div class="topbar__inner container">
-    <a class="brand" routerLink="/">
-      <span class="brand__logo" aria-hidden="true">RW</span>
-      <span class="brand__name">Market</span>
-    </a>
-
-    <span class="status status--{{ status() }}" role="status">
-      <span class="status__dot" aria-hidden="true"></span>
-      <span class="status__label">{{ statusLabel() }}</span>
-    </span>
+<header class="header">
+  <div class="container">
+    <a class="logo" routerLink="/">Coin Market</a>
   </div>
 </header>
 
@@ -16,6 +8,4 @@
   <router-outlet />
 </main>
 
-<footer class="footer container">
-  資料來源：Binance Public API（REST + WebSocket），僅供展示，不構成投資建議。
-</footer>
+<footer class="footer">資料來源：Binance Public API</footer>

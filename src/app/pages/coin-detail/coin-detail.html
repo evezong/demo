@@ -1,0 +1,36 @@
+<a class="back" routerLink="/">← 返回列表</a>
+
+@if (loading()) {
+  <p class="message">載入中…</p>
+} @else if (error()) {
+  <p class="message error">{{ error() }}</p>
+} @else if (coin(); as coin) {
+  <div class="header">
+    <h1>{{ coin.name }} <small>/ USDT</small></h1>
+    <div class="price">
+      $ {{ coin.price | number: '1.2-4' }}
+      <span [class.up]="coin.changePercent >= 0" [class.down]="coin.changePercent < 0">
+        {{ coin.changePercent >= 0 ? '+' : '' }}{{ coin.changePercent | number: '1.2-2' }}%
+      </span>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="label">24h 最高</div>
+      <div class="value">{{ coin.high | number: '1.2-4' }}</div>
+    </div>
+    <div class="stat">
+      <div class="label">24h 最低</div>
+      <div class="value">{{ coin.low | number: '1.2-4' }}</div>
+    </div>
+    <div class="stat">
+      <div class="label">24h 漲跌幅</div>
+      <div class="value">{{ coin.changePercent | number: '1.2-2' }}%</div>
+    </div>
+    <div class="stat">
+      <div class="label">24h 成交額 (USDT)</div>
+      <div class="value">{{ coin.volume | number: '1.0-0' }}</div>
+    </div>
+  </div>
+}

@@ -1,0 +1,33 @@
+<div class="toolbar">
+  <h1>市場行情</h1>
+
+  <div class="actions">
+    <input type="search" placeholder="搜尋幣種，例如 BTC" (input)="onSearch($event)" />
+    <button type="button" (click)="loadCoins()" [disabled]="loading()">重新整理</button>
+  </div>
+</div>
+
+@if (loading()) {
+  <p class="message">載入中…</p>
+} @else if (error()) {
+  <p class="message error">{{ error() }}</p>
+} @else {
+  <div class="grid">
+    @for (coin of filteredCoins(); track coin.symbol) {
+      <a class="card" [routerLink]="['/coin', coin.symbol]">
+        <div class="card-header">
+          <span class="name">{{ coin.name }}</span>
+          <span class="change" [class.up]="coin.changePercent >= 0" [class.down]="coin.changePercent < 0">
+            {{ coin.changePercent >= 0 ? '+' : '' }}{{ coin.changePercent | number: '1.2-2' }}%
+          </span>
+        </div>
+
+        <div class="price">$ {{ coin.price | number: '1.2-4' }}</div>
+
+        <div class="volume">24h 成交額 {{ coin.volume | number: '1.0-0' }}</div>
+      </a>
+    } @empty {
+      <p class="message">找不到符合的幣種。</p>
+    }
+  </div>
+}

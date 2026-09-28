@@ -1,0 +1,84 @@
+@use '../../../variables' as *;
+
+.back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: $primary;
+  text-decoration: none;
+}
+
+.header {
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+
+    small {
+      color: $text-muted;
+      font-size: 16px;
+      font-weight: normal;
+    }
+  }
+}
+
+.price {
+  font-size: 28px;
+  font-weight: bold;
+
+  span {
+    margin-left: 8px;
+    font-size: 16px;
+  }
+}
+
+.up {
+  color: $up;
+}
+
+.down {
+  color: $down;
+}
+
+// 統計資訊：手機 2 欄
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.stat {
+  padding: 16px;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  background: #fff;
+
+  .label {
+    color: $text-muted;
+    font-size: 13px;
+  }
+
+  .value {
+    margin-top: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    word-break: break-all;
+  }
+}
+
+.message {
+  padding: 40px 0;
+  text-align: center;
+  color: $text-muted;
+
+  &.error {
+    color: $down;
+  }
+}
+
+// 桌機：4 欄
+@media (min-width: 768px) {
+  .stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
